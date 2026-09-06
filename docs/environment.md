@@ -1,22 +1,27 @@
 # Lab Environment
 
-This file records the actual hardware and software used by the HomeLab.
+This document records the verified hardware and software currently used by the IT HomeLab.
 
 ## Host
 
 | Item | Value |
 |---|---|
-| Host OS | Windows 10 Education |
+| Host OS | Windows 11 Pro |
 | Hypervisor | Microsoft Hyper-V |
-| CPU | v2 |
-| RAM | 4 GB |
-| Storage allocated to lab | 40 GB |
-| Hyper-V version/features | TBD |
+| CPU | AMD Ryzen 5 5625U with Radeon Graphics |
+| RAM | 16 GB |
+| VM storage location | `D:` |
 
 ## Virtual Machines
 
-| VM | OS | Role | vCPU | RAM | Storage | Status |
-|---|---|---|---:|---:|---:|---|
-| LAB-DC01 | Windows Server | AD DS / DNS | v2 | 4 GB | 40 GB | Done |
-| LAB-CL01 | Windows 10 | Domain client | v2 | 4 GB | 40 GB | Done 
-| LAB-LNX01 | Ubuntu | Linux / network testing | 2 GB | 20 GB | TBD | Done |
+| Hyper-V VM | Hostname | OS | Role | RAM | Disk | Status |
+|---|---|---|---|---:|---:|---|
+| `LAB-DC01` | `DC01` | Windows Server 2022 Datacenter Evaluation | AD DS / DNS | 4 GB | 40 GB Dynamic VHDX | Active |
+| `LAB-CL01` | `CL01` | Windows 10 Education | Domain-joined client | 4 GB | 40 GB Dynamic VHDX | Active |
+| `LAB-LNX01` | TBD | OS not installed yet | Linux / network testing | TBD | TBD | Reserved / pending |
+
+## Notes
+
+- Virtual processor counts are intentionally not documented yet because they were not explicitly verified.
+- DHCP is not configured yet.
+- The Linux VM exists in Hyper-V, but its operating system and network configuration are still pending.
