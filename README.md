@@ -1,81 +1,173 @@
-# IT Support Home Lab
+# IT HomeLab
 
-A hands-on home lab built to strengthen my practical IT support, Windows administration, networking, and troubleshooting skills while preparing for an entry-level Helpdesk / IT Support role.
+A hands-on IT home lab built to strengthen my practical IT support, Windows administration, networking, virtualization, and troubleshooting skills while preparing for entry-level IT Support / Help Desk roles.
 
-This repository documents what I build, the issues I simulate, how I troubleshoot them, and how I verify each solution.
+This repository documents what I build, the issues I intentionally simulate, how I troubleshoot them, and how I verify each solution.
+
+> **Build → Break → Troubleshoot → Fix → Verify → Document**
 
 ## Goals
 
-* Refresh and apply core IT support fundamentals.
-* Build confidence troubleshooting Windows, hardware, network, and user-access issues.
-* Practice Active Directory administration in a small business environment.
-* Develop clear technical documentation and ticket-writing habits.
-* Prepare for CompTIA A+ and an entry-level IT Support / Helpdesk position.
+- Refresh and apply core IT support fundamentals.
+- Build confidence troubleshooting Windows, hardware, network, and user-access issues.
+- Practice Windows Server and Active Directory administration in a small-business-style environment.
+- Develop clear technical documentation and ticket-writing habits.
+- Prepare for CompTIA A+ and entry-level IT Support / Help Desk work.
+- Build a public portfolio of practical, reproducible IT labs.
 
-## Lab Environment
+## Lab Platform
 
-The lab will use virtual machines to simulate a small company environment.
+The primary virtualization platform is **Microsoft Hyper-V** running on a Windows 10 host.
 
-| Component           | Purpose                                                   |
-| ------------------- | --------------------------------------------------------- |
-| Windows Server      | Active Directory Domain Services, DNS, Group Policy       |
-| Windows 11 Client   | Domain-joined user workstation and troubleshooting target |
-| Ubuntu              | Basic Linux administration and networking practice        |
-| VirtualBox / VMware | Virtualization platform                                   |
+### Initial Architecture
+
+```text
+Windows 10 Host
+└── Hyper-V
+    ├── LAB-DC01
+    │   └── Windows Server
+    │       ├── Active Directory Domain Services
+    │       ├── DNS
+    │       └── DHCP (planned)
+    │
+    ├── LAB-CL01
+    │   └── Windows 10 Client
+    │       └── Domain-joined workstation
+    │
+    └── LAB-LNX01
+        └── Ubuntu
+            └── Linux and networking practice
+```
+
+The environment will expand only when a lab requires it.
+
+## Repository Structure
+
+```text
+IT-HomeLab/
+├── README.md
+├── docs/
+│   ├── architecture.md
+│   ├── environment.md
+│   └── network-plan.md
+├── labs/
+│   ├── 01-hyper-v/
+│   ├── 02-windows-server/
+│   ├── 03-active-directory/
+│   ├── 04-dns-dhcp/
+│   ├── 05-windows-client/
+│   ├── 06-group-policy/
+│   ├── 07-file-permissions/
+│   ├── 08-network-troubleshooting/
+│   ├── 09-windows-troubleshooting/
+│   └── 10-linux/
+├── scenarios/
+│   ├── account-locked/
+│   ├── dns-failure/
+│   ├── domain-login-failure/
+│   ├── gpo-not-applying/
+│   ├── no-network-connectivity/
+│   └── shared-folder-access/
+├── screenshots/
+├── templates/
+│   ├── lab-template.md
+│   └── troubleshooting-template.md
+└── media/
+    └── linkedin/
+        └── templates/
+```
 
 ## Planned Labs
 
-### Windows & Hardware Support
+### Hyper-V & Virtualization
+- Enable and validate Hyper-V.
+- Create and document virtual switches.
+- Build and manage VMs.
+- Configure checkpoints appropriately.
+- Document VM resource allocation and networking.
 
-* Windows installation, drivers, updates, and recovery
-* Local user accounts and permissions
-* Device Manager and Event Viewer troubleshooting
-* Storage, performance, startup, and display issues
-* Printer installation and common printing problems
-
-### Networking Fundamentals
-
-* IP addressing, subnetting, gateway, DNS, and DHCP
-* Wi-Fi and wired connectivity troubleshooting
-* Using `ipconfig`, `ping`, `tracert`, `nslookup`, and `netstat`
-* Simulating and resolving DNS and connectivity issues
+### Windows Server
+- Install and configure Windows Server.
+- Configure server naming and static addressing.
+- Install server roles.
+- Practice basic server administration.
 
 ### Active Directory
+- Build a domain controller.
+- Create Organizational Units, users, and groups.
+- Join Windows clients to the domain.
+- Practice account lifecycle and access support.
+- Troubleshoot login and domain issues.
 
-* Building a domain controller and joining client devices
-* Organizational Units, users, groups, and access control
-* Shared folders and NTFS permissions
-* Group Policy basics
-* Common support scenarios: locked accounts, login failures, missing access, and policies not applying
+### DNS & DHCP
+- Configure internal DNS.
+- Configure DHCP scopes and leases.
+- Simulate name-resolution failures.
+- Troubleshoot address-assignment problems.
 
-### Microsoft 365 & End-User Support
+### Windows Client Support
+- Windows installation, drivers, updates, and recovery.
+- Local accounts and permissions.
+- Device Manager and Event Viewer.
+- Storage, performance, startup, and display troubleshooting.
+- Printer installation and common printing issues.
 
-* User account and license basics
-* Password reset and MFA support
-* Outlook, Teams, and OneDrive troubleshooting
-* Remote support communication and ticket documentation
+### Group Policy
+- Create and link basic GPOs.
+- Validate policy application.
+- Troubleshoot GPO processing issues.
 
-## Documentation Format
+### File & NTFS Permissions
+- Shared folders.
+- Share vs NTFS permissions.
+- Group-based access.
+- Missing-access troubleshooting.
 
-Each lab or support scenario will include:
+### Networking
+- IP addressing, subnetting, gateway, DNS, DHCP, MAC, and VLAN fundamentals.
+- `ipconfig`, `ping`, `tracert`, `nslookup`, `netstat`.
+- Simulated connectivity and DNS failures.
 
-1. **Scenario** — What the user or system issue is.
-2. **Environment** — Devices, operating systems, and services involved.
-3. **Symptoms** — What was observed.
-4. **Troubleshooting process** — Steps taken and why.
-5. **Resolution** — The confirmed fix.
-6. **Verification** — How the solution was tested.
-7. **Key takeaway** — What I learned.
+### Linux
+- Basic Ubuntu administration.
+- Users, permissions, services, networking, and CLI troubleshooting.
+
+## Documentation Standard
+
+Every completed lab or scenario should include:
+
+1. **Scenario** — What is being built or what issue is being simulated.
+2. **Objective** — What the lab is intended to prove or practice.
+3. **Environment** — Systems, VMs, OS versions, network, and services involved.
+4. **Symptoms / Initial State** — What is observed before troubleshooting.
+5. **Troubleshooting Process** — Steps taken and the reason for each step.
+6. **Root Cause** — Confirmed cause when applicable.
+7. **Resolution** — The confirmed fix.
+8. **Verification** — Evidence that the system now works as expected.
+9. **Evidence** — Screenshots, commands, logs, or configuration outputs.
+10. **Key Takeaway** — What was learned.
 
 ## Progress
 
-This repository is actively being built. Labs and documentation will be added as they are completed.
+| Area | Status |
+|---|---|
+| Repository foundation | 🟡 In progress |
+| Hyper-V foundation | ⬜ Planned |
+| Windows Server | ⬜ Planned |
+| Active Directory | ⬜ Planned |
+| DNS / DHCP | ⬜ Planned |
+| Windows Client | ⬜ Planned |
+| Group Policy | ⬜ Planned |
+| File Permissions | ⬜ Planned |
+| Network Troubleshooting | ⬜ Planned |
+| Windows Troubleshooting | ⬜ Planned |
+| Linux | ⬜ Planned |
 
 ## Background
 
-I am an Associate of Science in Computer and Information Technology candidate at Jubail Industrial College, with hands-on experience, I am building this lab to turn my academic foundation into consistent, documented practical skill.
+I am an Associate of Science in Computer and Information Technology candidate at Jubail Industrial College. I am building this lab to turn my academic foundation into consistent, documented practical skill.
 
 ## Contact
 
-**Basil Albarazi**
-[LinkedIn](https://www.linkedin.com/in/basil-albarazi/)
+**Basil Albarazi**  
+LinkedIn: https://www.linkedin.com/in/basil-albarazi/

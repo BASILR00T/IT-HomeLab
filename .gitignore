@@ -1,0 +1,38 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Virtual machine files
+*.vhd
+*.vhdx
+*.avhd
+*.avhdx
+*.vsv
+*.vmcx
+*.vmrs
+
+# ISO images
+*.iso
+
+# Credentials / secrets
+*.key
+*.pem
+*.pfx
+*.p12
+.env
+.env.*
+
+# Logs / exports
+*.log
+*.evtx
+
+# Temporary files
+*.tmp
+*.bak
+~$*
+
+# Local/raw media
+assets/linkedin/
+assets/evidence/
