@@ -78,4 +78,4 @@ I am an Associate of Science in Computer and Information Technology candidate at
 ## Contact
 
 **Basil Albarazi**
-[LinkedIn](https://www.linkedin.com/in/basil-sami-albarazi-37942b208)
+[LinkedIn](https://www.linkedin.com/in/basil-albarazi/)
