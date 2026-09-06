@@ -6,6 +6,23 @@ This repository documents what I build, the issues I intentionally simulate, how
 
 > **Build → Break → Troubleshoot → Fix → Verify → Document**
 
+## Current Milestone — Active Directory Foundation
+
+The first working milestone is complete:
+
+- Microsoft Hyper-V on a Windows 11 Pro host
+- Internal Hyper-V switch: `LAB-SW01`
+- Lab subnet: `10.10.10.0/24`
+- Domain Controller: `DC01` / `10.10.10.10`
+- Active Directory Domain Services
+- DNS
+- Domain: `basilroot.local`
+- NetBIOS: `BASILROOT`
+- Windows 10 Education client: `CL01` / `10.10.10.20`
+- Successful domain join and domain-user sign-in
+
+DHCP is intentionally not configured yet. Static addressing is being used while the core Active Directory environment is built and validated.
+
 ## Goals
 
 - Refresh and apply core IT support fundamentals.
@@ -17,26 +34,31 @@ This repository documents what I build, the issues I intentionally simulate, how
 
 ## Lab Platform
 
-The primary virtualization platform is **Microsoft Hyper-V** running on a Windows 10 host.
+The primary virtualization platform is **Microsoft Hyper-V** running on a **Windows 11 Pro** host.
 
-### Initial Architecture
+### Current Architecture
 
 ```text
-Windows 10 Host
-└── Hyper-V
-    ├── LAB-DC01
-    │   └── Windows Server
-    │       ├── Active Directory Domain Services
-    │       ├── DNS
-    │       └── DHCP (planned)
-    │
-    ├── LAB-CL01
-    │   └── Windows 10 Client
-    │       └── Domain-joined workstation
-    │
-    └── LAB-LNX01
-        └── Ubuntu
-            └── Linux and networking practice
+Windows 11 Pro Host
+└── Microsoft Hyper-V
+    └── LAB-SW01 (Internal)
+        └── 10.10.10.0/24
+            ├── LAB-DC01
+            │   └── DC01
+            │       ├── Windows Server 2022 Datacenter Evaluation
+            │       ├── 10.10.10.10
+            │       ├── Active Directory Domain Services
+            │       └── DNS
+            │
+            ├── LAB-CL01
+            │   └── CL01
+            │       ├── Windows 10 Education
+            │       ├── 10.10.10.20
+            │       ├── DNS: 10.10.10.10
+            │       └── Domain: basilroot.local
+            │
+            └── LAB-LNX01
+                └── Reserved VM — OS installation pending
 ```
 
 The environment will expand only when a lab requires it.
@@ -46,91 +68,36 @@ The environment will expand only when a lab requires it.
 ```text
 IT-HomeLab/
 ├── README.md
+├── assets/
+│   └── github/              # Curated showcase media only
 ├── docs/
 │   ├── architecture.md
 │   ├── environment.md
+│   ├── network-diagram.md
 │   └── network-plan.md
 ├── labs/
-│   ├── 01-hyper-v/
-│   ├── 02-windows-server/
-│   ├── 03-active-directory/
-│   ├── 04-dns-dhcp/
-│   ├── 05-windows-client/
-│   ├── 06-group-policy/
-│   ├── 07-file-permissions/
-│   ├── 08-network-troubleshooting/
-│   ├── 09-windows-troubleshooting/
-│   └── 10-linux/
 ├── scenarios/
-│   ├── account-locked/
-│   ├── dns-failure/
-│   ├── domain-login-failure/
-│   ├── gpo-not-applying/
-│   ├── no-network-connectivity/
-│   └── shared-folder-access/
-├── screenshots/
-├── templates/
-│   ├── lab-template.md
-│   └── troubleshooting-template.md
-└── media/
-    └── linkedin/
-        └── templates/
+└── templates/
 ```
 
-## Planned Labs
+Local/raw media for LinkedIn and personal evidence is excluded from Git via `.gitignore`.
 
-### Hyper-V & Virtualization
-- Enable and validate Hyper-V.
-- Create and document virtual switches.
-- Build and manage VMs.
-- Configure checkpoints appropriately.
-- Document VM resource allocation and networking.
+## Progress
 
-### Windows Server
-- Install and configure Windows Server.
-- Configure server naming and static addressing.
-- Install server roles.
-- Practice basic server administration.
-
-### Active Directory
-- Build a domain controller.
-- Create Organizational Units, users, and groups.
-- Join Windows clients to the domain.
-- Practice account lifecycle and access support.
-- Troubleshoot login and domain issues.
-
-### DNS & DHCP
-- Configure internal DNS.
-- Configure DHCP scopes and leases.
-- Simulate name-resolution failures.
-- Troubleshoot address-assignment problems.
-
-### Windows Client Support
-- Windows installation, drivers, updates, and recovery.
-- Local accounts and permissions.
-- Device Manager and Event Viewer.
-- Storage, performance, startup, and display troubleshooting.
-- Printer installation and common printing issues.
-
-### Group Policy
-- Create and link basic GPOs.
-- Validate policy application.
-- Troubleshoot GPO processing issues.
-
-### File & NTFS Permissions
-- Shared folders.
-- Share vs NTFS permissions.
-- Group-based access.
-- Missing-access troubleshooting.
-
-### Networking
-- IP addressing, subnetting, gateway, DNS, DHCP, MAC, and VLAN fundamentals.
-- `ipconfig`, `ping`, `tracert`, `nslookup`, `netstat`.
-- Simulated connectivity and DNS failures.
-
-### Linux
-- Basic Ubuntu administration.
-- Users, permissions, services, networking, and CLI troubleshooting.
+| Area | Status |
+|---|---|
+| Repository foundation | ✅ Complete |
+| Hyper-V foundation | ✅ Complete |
+| Windows Server foundation | ✅ Complete |
+| Active Directory foundation | ✅ Complete |
+| DNS foundation | ✅ Complete |
+| Windows Client domain join | ✅ Complete |
+| DHCP | ⬜ Planned |
+| Group Policy | ⬜ Planned |
+| File Permissions | ⬜ Planned |
+| Network Troubleshooting | ⬜ Planned |
+| Windows Troubleshooting | ⬜ Planned |
+| Linux | 🟡 VM reserved / OS pending |
 
 ## Documentation Standard
 
@@ -140,28 +107,12 @@ Every completed lab or scenario should include:
 2. **Objective** — What the lab is intended to prove or practice.
 3. **Environment** — Systems, VMs, OS versions, network, and services involved.
 4. **Symptoms / Initial State** — What is observed before troubleshooting.
-5. **Troubleshooting Process** — Steps taken and the reason for each step.
+5. **Troubleshooting Process** — Steps taken and why.
 6. **Root Cause** — Confirmed cause when applicable.
 7. **Resolution** — The confirmed fix.
-8. **Verification** — Evidence that the system now works as expected.
-9. **Evidence** — Screenshots, commands, logs, or configuration outputs.
+8. **Verification** — Evidence that the system works as expected.
+9. **Evidence** — Curated screenshots, commands, logs, or configuration outputs when useful.
 10. **Key Takeaway** — What was learned.
-
-## Progress
-
-| Area | Status |
-|---|---|
-| Repository foundation | 🟡 In progress |
-| Hyper-V foundation | ⬜ Planned |
-| Windows Server | ⬜ Planned |
-| Active Directory | ⬜ Planned |
-| DNS / DHCP | ⬜ Planned |
-| Windows Client | ⬜ Planned |
-| Group Policy | ⬜ Planned |
-| File Permissions | ⬜ Planned |
-| Network Troubleshooting | ⬜ Planned |
-| Windows Troubleshooting | ⬜ Planned |
-| Linux | ⬜ Planned |
 
 ## Background
 
