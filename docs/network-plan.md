@@ -1,24 +1,29 @@
 # Network Plan
 
-The final IP plan will be recorded here after the Hyper-V virtual-switch design is confirmed.
+## Current Lab Network
 
-## Virtual Switches
-
-| Switch | Hyper-V Type | Purpose | Status |
-|---|---|---|---|
-| TBD | TBD | TBD | Planned |
+| Item | Value |
+|---|---|
+| Hyper-V switch | `LAB-SW01` |
+| Switch type | Internal |
+| Subnet | `10.10.10.0/24` |
+| Gateway | Not configured |
+| DNS server | `10.10.10.10` |
+| DHCP | Not configured yet |
 
 ## Addressing
 
-| System | Hostname | IP | Gateway | DNS |
-|---|---|---|---|---|
-| Domain Controller | LAB-DC01 | 10.10.10.10 | TBD |  10.10.10.10 |
-| Windows Client | LAB-CL01 |  10.10.10.20 | TBD |  10.10.10.10 |
-| Ubuntu | LAB-LNX01 |  10.10.10.30 | TBD |  10.10.10.10 |
+| System | Hyper-V VM | Hostname | IP | Gateway | DNS |
+|---|---|---|---|---|---|
+| Domain Controller | `LAB-DC01` | `DC01` | `10.10.10.10` | None | `10.10.10.10` |
+| Windows Client | `LAB-CL01` | `CL01` | `10.10.10.20` | None | `10.10.10.10` |
+| Linux VM | `LAB-LNX01` | TBD | TBD | TBD | TBD |
 
-## Domain
+## Active Directory Namespace
 
-- AD domain name: **TBD**
-- NetBIOS name: **TBD**
+- AD domain: **`basilroot.local`**
+- NetBIOS name: **`BASILROOT`**
 
-> Do not invent values here. Update the document when the architecture is actually configured.
+## Current Scope
+
+The first milestone uses static addressing on an isolated internal Hyper-V network. Internet routing and DHCP are intentionally outside the current completed scope and will be added only when required by later labs.
