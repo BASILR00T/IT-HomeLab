@@ -1,9 +1,25 @@
 # Windows Server
 
-**Status:** Planned
+**Status:** Foundation complete
 
-This folder will contain completed labs for **Windows Server**.
+## Current Server
 
-Use `../../templates/lab-template.md` as the base when documenting a completed lab.
+| Item | Value |
+|---|---|
+| Hyper-V VM | `LAB-DC01` |
+| Hostname | `DC01` |
+| OS | Windows Server 2022 Datacenter Evaluation |
+| RAM | 4 GB |
+| Disk | 40 GB Dynamic VHDX |
+| IP | `10.10.10.10` |
+| DNS | `10.10.10.10` |
 
-Only document configurations and evidence that were actually built or tested.
+## Completed
+
+- Installed and configured Windows Server.
+- Renamed the server to `DC01`.
+- Configured static addressing.
+- Installed Active Directory Domain Services and DNS.
+- Promoted the server as the first Domain Controller for `basilroot.local`.
+
+Further server-administration labs will be documented here as they are completed.
